@@ -3,6 +3,7 @@ URL configuration for Smart Trip Planner project.
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import JsonResponse
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
@@ -28,6 +29,9 @@ urlpatterns = [
     path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/auth/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     
+    # Health Check (Root)
+    path('', lambda request: JsonResponse({'status': 'healthy', 'message': 'Smart Trip Planner API is running'}), name='health_check'),
+
     # App URLs
     path('api/users/', include('apps.users.urls')),
     path('api/trips/', include('apps.trips.urls')),

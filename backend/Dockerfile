@@ -36,5 +36,5 @@ RUN python manage.py collectstatic --noinput || true
 EXPOSE 8000
 
 # Run with Gunicorn (production server)
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "60", "config.wsgi:application"]
+CMD gunicorn --bind 0.0.0.0:$PORT --workers 3 --timeout 60 config.wsgi:application
 
