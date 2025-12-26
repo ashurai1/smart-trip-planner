@@ -1,0 +1,36 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'flutter_app/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'flutter_app/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./flutter_app
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.19.0' # Adjust execution version
+        channel: 'stable'
+        
+    - name: Install Dependencies
+      run: flutter pub get
+      
+    - name: Analyze
+      run: flutter analyze
+      
+    - name: Run Tests
+      run: flutter test
