@@ -56,7 +56,7 @@ class TripInviteTests(TestCase):
 
     def test_accept_invite_username_success(self):
         """Test accepting a username-based invite."""
-        invite = TripInvite.objects.create(trip=self.trip, invited_user=self.user)
+        invite = TripInvite.objects.create(trip=self.trip, invited_user=self.user, invited_by=self.owner)
         self.client.force_authenticate(user=self.user)
         response = self.client.get(f'/api/trips/invites/accept/{invite.token}/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -65,7 +65,7 @@ class TripInviteTests(TestCase):
 
     def test_accept_invite_wrong_user(self):
         """Test that wrong user cannot accept username-limited invite."""
-        invite = TripInvite.objects.create(trip=self.trip, invited_user=self.user)
+        invite = TripInvite.objects.create(trip=self.trip, invited_user=self.user, invited_by=self.owner)
         self.client.force_authenticate(user=self.other_user)
         response = self.client.get(f'/api/trips/invites/accept/{invite.token}/')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -88,7 +88,7 @@ class TripInviteTests(TestCase):
         
     def test_invite_pending_username(self):
         """Test duplicated pending invite (username) returns 400."""
-        TripInvite.objects.create(trip=self.trip, invited_user=self.user)
+        TripInvite.objects.create(trip=self.trip, invited_user=self.user, invited_by=self.owner)
         data = {'identifier': 'user'}
         response = self.client.post(f'/api/trips/{self.trip.id}/invite/', data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
