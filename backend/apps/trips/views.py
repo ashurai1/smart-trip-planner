@@ -1,4 +1,4 @@
-from .models import Trip, TripInvite, ItineraryItem, Notification
+from .models import Trip, TripInvite, ItineraryItem, Notification, TripNotificationState
 from .serializers import (
     TripSerializer, 
     AddCollaboratorSerializer, 
