@@ -12,8 +12,9 @@ from drf_spectacular.views import (
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
+    TokenObtainPairView,
 )
-from apps.users.views import CustomTokenObtainPairView
+from apps.users.views import LoginAPIView
 
 urlpatterns = [
     # Admin
@@ -24,8 +25,13 @@ urlpatterns = [
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     
-    # JWT Authentication
-    path('api/auth/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    # JWT Authentication - Standard Token Endpoint
+    path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    
+    # JWT Authentication - Custom Login (Alternative)
+    path('api/auth/login/', LoginAPIView.as_view(), name='auth_login'), 
+    
+    # Standard SimpleJWT Views
     path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/auth/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     
