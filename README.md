@@ -20,7 +20,7 @@ Sabse pehle backend server chalu karna padega taaki app data fetch kar sake.
 2.  Project ke root folder mein jaayein.
 3.  Backend folder mein jaane ke liye aur server start karne ke liye ye commands run karein:
 
-```bash
+```bashs
 cd backend
 python3 -m pip install -r requirements.txt
 python3 manage.py runserver 0.0.0.0:8000
@@ -43,6 +43,24 @@ cd flutter_app
 flutter pub get
 flutter run -d chrome
 ```
+
+## IMPORTANT
+
+## Terminal 1: Backend (Server)
+cd /Users/ashwanirai/Documents/smart-trip-planner/backend
+python3 -m venv venv
+source venv/bin/activate
+python manage.py runserver
+* API Documentation (Swagger): http://127.0.0.1:8000/api/docs/
+* Admin Panel: http://127.0.0.1:8000/admin/
+
+
+## Terminal 2: Frontend (App)
+cd /Users/ashwanirai/Documents/smart-trip-planner/flutter_app
+flutter run -d chrome
+
+**You can login with: Username: admin Password: admin123  You can access the admin panel at http://localhost:8000/admin .**
+
 
 Chrome browser open ho jayega aur aapka **Smart Trip Planner** app waha chal jayega! 🎉
 
