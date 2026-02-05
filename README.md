@@ -1,3 +1,6 @@
+[![Project Demo](https://img.shields.io/badge/▶-Watch_Demo-red?style=for-the-badge)](https://drive.google.com/file/d/1hbc1YBjGkz-dZyeLnWvyWm-IXzJWt-i5/view)
+
+
 # Smart Trip Planner 🌍✈️
 
 **Kya hai ye project?**
